@@ -13,7 +13,11 @@
     "express": "4.x",
     "coffee-script": "1.x",
     "jade": "*",
-    "stylus": "*"
+    "stylus": "*",
+    "morgan": "*",
+    "body-parser": "*",
+    "method-override": "*",
+    "underscore": "*",
   },
   "main": "server.js",
   "repository": {
