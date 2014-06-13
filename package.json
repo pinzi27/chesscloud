@@ -17,7 +17,7 @@
     "morgan": "*",
     "body-parser": "*",
     "method-override": "*",
-    "underscore": "*",
+    "underscore": "*"
   },
   "main": "server.js",
   "repository": {
