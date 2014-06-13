@@ -22,17 +22,20 @@ var log = {
 };
  
 exports.getLogger = function (filename) {
-  var logger = new (winston.Logger)({
-    'transports': [
-    new (winston.transports.Console)(
+  var trans = [
+  new (winston.transports.Console)(
     {
       'level': 'detail',
       'colorize': true
-    }),
-    new (winston.transports.File)(
+    })];
+  if (filename != false) {
+    trans.push(new (winston.transports.File)(
     {
       'filename': filename
-    })]
+    }));
+  }
+  var logger = new (winston.Logger)({
+    'transports': trans
   });
 
   logger.setLevels(log.logger.levels);

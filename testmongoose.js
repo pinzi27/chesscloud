@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var logger = require('./util/customLogger').getLogger('mongo.log');
+var logger = require('./util/customLogger').getLogger(false);
 
 mongoose.connect('mongodb://localhost/test'); 
 

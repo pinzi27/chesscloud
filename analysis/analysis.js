@@ -1,48 +1,5 @@
-var winston = require('winston');
 var spawn = require('child_process').spawn;
-
-var log = {
-  'logger' : {
-    'levels': {
-      'detail': 0,
-      'trace': 1,
-      'debug': 2,
-      'info': 3,
-      'warn': 4,
-      'error': 5
-    },
-    'colors': {
-      'detail': 'grey',
-      'trace': 'white',
-      'debug': 'blue',
-      'info': 'green',
-      'warn': 'yellow',
-      'error': 'red'
-    },
-  }
-};
- 
-function getLogger() {
-  var logger = new (winston.Logger)({
-    'transports': [
-    new (winston.transports.Console)(
-    {
-      'level': 'detail',
-      'colorize': true
-    }),
-    new (winston.transports.File)(
-    {
-      'filename': 'analysis.log'
-    })]
-  });
-
-  logger.setLevels(log.logger.levels);
-  winston.addColors(log.logger.colors);
-
-  return logger;
-}
-
-var logger = getLogger();
+var logger = require('../util/customLogger').getLogger('analysis.log');
 
 
 var games = [
@@ -89,7 +46,7 @@ function analyzeGame(gamesList) {
   }
   var game = gamesList.pop() 
   var startDate = new Date();
-  var movedepth = 17;
+  var movedepth = 15;
   var playedMoves = '';
   var infolines = 'score cp ?';
   var count = 0;
