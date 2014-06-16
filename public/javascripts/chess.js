@@ -255,6 +255,7 @@ function chess () {
         var bdir = [-15,15,-17,17]; // bishop direction
         var rdir = [-1,1,-16,16]; // rook direction
         var ndir = [-14,14,-18,18,-31,31,-33,33]; // night direction
+        var kdir = [-1,1,-16,16,-15,15,-17,17]; // king direction
         var i = self.kingsPosition[player];
         for (var k = 0; k < 4; k++) {
             var onBoard = _.filter(_.map(_.range(1,8),function (num) {return i + num*bdir[k];}), function (num) {return !(num & 0x88);});
@@ -276,6 +277,11 @@ function chess () {
         if (player == 1) {
             if (!((i + 15) & 0x88) && self.position[i + 15].type == 'PAWN' && self.position[i + 15].color == 0) return true;
             if (!((i + 17) & 0x88) && self.position[i + 17].type == 'PAWN' && self.position[i + 17].color == 0) return true;
+        }
+        for (var k = 0; k < 4; k++) {
+            if (!((i + kdir[k]) & 0x88) && self.position[i + kdir[k]].type == 'KING') {
+                return true;
+            }
         }
         return false;
     };
